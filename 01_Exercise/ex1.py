@@ -19,14 +19,14 @@ with open(sys.argv[1], "r") as f:
         stripped = line.strip()
  
         # Ignore empty lines
-        if stripped == "" :
+        if stripped == "":
             continue;
 
         fields = stripped.split(";")
 
-        if len(fields) != 3 :
+        if len(fields) != 3:
             print("Line {} : Syntax error [{}]".format(lineno + 1, stripped));
-            continue;
+            continue
 
         try:
             seq = int(fields[0])
@@ -34,15 +34,15 @@ with open(sys.argv[1], "r") as f:
             val = float(fields[2])
 
         except ValueError:
-            print("Line {} : Syntax error [{}]".format(lineno + 1, stripped));
-            continue;
+            print("Line {} : Syntax error [{}]".format(lineno + 1, stripped))
+            continue
 
         if loc not in [1, 2]:
-            print("Line {} : Illegal location: {}".format(lineno + 1, loc));
+            print("Line {} : Illegal location: {}".format(lineno + 1, loc))
             continue
 
         if math.isnan(val) or val <= 0.0 :
-            print("Line {} : Invalid value".format(lineno + 1));
+            print("Line {} : Invalid value".format(lineno + 1))
             continue
 
         loc -= 1
@@ -51,9 +51,9 @@ with open(sys.argv[1], "r") as f:
 
 # Print statistics
 
-print ("File: ", sys.argv[1], "with", lineno, "lines");
+print ("File: ", sys.argv[1], "with", lineno, "lines")
 
 for loc in [0, 1]:
-    print ("Valid values Loc", loc + 1, ": ", len(loc_value[loc]), "with GeoMean:", geom_mean(loc_value[loc]));
+    print("Valid values Loc", loc + 1, ": ", len(loc_value[loc]), "with GeoMean:", geom_mean(loc_value[loc]))
 
 # EOF
